@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option go_package = "protos/toolkits";
+package pbuf;
+
+
+service Text {
+  rpc ExtractKeywords (KeywordRequest) returns (KeywordResponse) {}
+  rpc ExtractSummary (SummaryRequest) returns (SummaryResponse) {}
+  rpc ExtractTfIdf (TFRequest) returns (TFResponse) {}
+}
+
+// Keyword
+message KeywordRequest {
+  string text = 1;
+}
+
+message KeywordResponse {
+  repeated string text = 1;
+}
+
+// Summary
+message SummaryRequest {
+  string text = 1;
+  int64 count = 2;  // No of sentence
+}
+
+message SummaryResponse {
+  string text = 1;
+}
+
+// Tf-idf
+message TFRequest {
+  repeated string text = 1;
+}
+
+message TFResponse {
+  repeated TFRecord records = 1;
+}
+
+message TFRecord {
+  string text = 1;
+  float score = 2;
+}
