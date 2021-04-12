@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"gitlab.com/billyla/gtoolkits/protos/toolkits"
+	"github.com/billylkc/gtoolkits/protos/toolkits"
 	"google.golang.org/grpc"
 )
 
