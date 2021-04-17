@@ -10,11 +10,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-const (
-	ADDRESS = "localhost:50052"
-	TIMEOUT = 2
-)
-
 func getRPCConnection(server string) (*grpc.ClientConn, error) {
 	conn, err := grpc.Dial(server,
 		grpc.WithTimeout(time.Duration(TIMEOUT)*time.Second),
@@ -66,6 +61,19 @@ func GetKeywords(s string, n int) ([]string, error) {
 	return keywords, nil
 }
 
+// HighlightKeywords highlights the keywords directly
+func HighlightKeywords(s string, n int) (string, error) {
+	keywords, err := GetKeywords(s, n)
+	if err != nil {
+		return s, err
+	}
+	for _, k := range keywords {
+		s = insensitiveReplace(s, k, true)
+	}
+	return s, nil
+}
+
+// GetTfIdf gets the tf-idf scores
 func GetTfIdf(doc []string, n int) ([]TFRecord, error) {
 	var result []TFRecord
 

@@ -3,6 +3,11 @@
 
 package gtoolkits
 
+const (
+	ADDRESS = "localhost:50052"
+	TIMEOUT = 2
+)
+
 type TFRecord struct {
 	Keyword string
 	Weight  float64
